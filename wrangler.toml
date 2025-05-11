@@ -1,0 +1,26 @@
+name = "mcp-google-dns-server"
+main = "src/index.ts"
+compatibility_date = "2025-03-25"
+
+[durable_objects]
+bindings = [
+  { name = "MCP_SESSION", class_name = "MCP_GoogleDNSServer" }
+]
+
+[[migrations]]
+tag = "v1"
+new_classes = ["MCP_GoogleDNSServer"]
+
+[env.production]
+workers_dev = true
+
+[vars]
+# Set environment variables here
+# GOOGLE_DNS_API_KEY = "" # Optional, if needed
+
+[build]
+command = "npm run build"
+
+[[kv_namespaces]]
+binding = "OAUTH_STORAGE"
+id = "your-kv-namespace-id" # Replace with your KV namespace ID when deploying
